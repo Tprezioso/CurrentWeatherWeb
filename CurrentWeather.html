@@ -42,7 +42,6 @@ function getWeather() {
           data.weather[i];
           description = data.weather[i].description;
         }
-
         console.log(icon);
         document.getElementById("icon").innerHTML = description;
       }
@@ -61,8 +60,8 @@ function getLocation() {
 var lon = "";
 var lat = "";
 function showPosition(position) {
-    lon = position.coords.longitude;
-    lat = position.coords.latitude;
+  lon = position.coords.longitude;
+  lat = position.coords.latitude;
   getWeather();
 }
 </script>
