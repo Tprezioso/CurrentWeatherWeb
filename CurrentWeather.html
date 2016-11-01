@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<header>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</header>
+<style>
+.weather {
+  text-align:center;
+  color:white;
+}
+
+body {
+  background-color:black;
+}
+</style>
+<script>
+function load(){
+  getLocation();
+}
+
+function getWeather() {
+  $(function (){
+    $.ajax({
+      type: 'GET',
+      url: 'http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid=fe68eba08ab0baef9b8a6252ca212f7e',
+      dataType:"jsonp",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'text/plain'
+    },
+      success: function(data) {
+console.log(data);
+        var raw = data.main.temp;
+        var newData = raw *1.8 - 459.67;
+        var jsonStr = JSON.stringify(newData);
+        console.log(jsonStr);
+        jsonStr = jsonStr.substring(0,2);
+        jsonStr += " °F";
+        document.getElementById("temperature").innerHTML = jsonStr;
+        var description = "";
+        for (var i = 0; i < data.weather.length; i++) {
+          data.weather[i];
+          description = data.weather[i].description;
+        }
+
+        console.log(icon);
+        document.getElementById("icon").innerHTML = description;
+      }
+    });
+  });
+}
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+var lon = "";
+var lat = "";
+function showPosition(position) {
+    lon = position.coords.longitude;
+    lat = position.coords.latitude;
+  getWeather();
+}
+</script>
+  <body onload="load()">
+    <div id="weather" class="weather" >
+      <h1 style="font-size: 70px">Current Weather</h1>
+      <h1 id="icon" style="font-size: 70px"></h1>
+      <h2 id="temperature" style="font-size: 70px">- °F</h2>
+      <p>Powered by OpenWeatherMap</p>
+    </div>
+</body>
+</html>
