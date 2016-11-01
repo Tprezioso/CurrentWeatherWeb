@@ -14,12 +14,12 @@ body {
 }
 </style>
 <script>
-function load(){
+function load() {
   getLocation();
 }
 
 function getWeather() {
-  $(function (){
+  $(function () {
     $.ajax({
       type: 'GET',
       url: 'http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid=fe68eba08ab0baef9b8a6252ca212f7e',
@@ -29,7 +29,7 @@ function getWeather() {
         'Content-Type': 'text/plain'
     },
       success: function(data) {
-console.log(data);
+        console.log(data);
         var raw = data.main.temp;
         var newData = raw *1.8 - 459.67;
         var jsonStr = JSON.stringify(newData);
