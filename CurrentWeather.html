@@ -29,11 +29,9 @@ function getWeather() {
         'Content-Type': 'text/plain'
     },
       success: function(data) {
-        console.log(data);
         var raw = data.main.temp;
         var newData = raw * 1.8 - 459.67;
         var jsonStr = JSON.stringify(newData);
-        console.log(jsonStr);
         jsonStr = jsonStr.substring(0,2);
         jsonStr += " °F";
         document.getElementById("temperature").innerHTML = jsonStr;
