@@ -56,11 +56,11 @@ function getLocation() {
 
 var lon = "";
 var lat = "";
-function showPosition(position) {
-  lon = position.coords.longitude;
-  lat = position.coords.latitude;
-  getWeather();
-}
+  function showPosition(position) {
+    lon = position.coords.longitude;
+    lat = position.coords.latitude;
+    getWeather();
+  }
 </script>
   <body onload="load()">
     <div id="weather" class="weather" >
